@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <style>
+    p {
+      width: 400px;
+    }
+    div {
+      width: 50px;
+      height: 30px;
+      margin: 5px;
+      position: absolute;
+      right: 0; 
+      background: red;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+
+<h2>slideToggle</h2>
+<button>Toggle Paragraph</button>
+<p>
+ Start
+</p>
+
+<h2>Animation </h2>
+<button id="animateButton">Start Animation</button>
+<div id="animatedDiv" style="background:#125f21;height:100px;width:100px;position:absolute; right: 0;"></div>
+
+<h2>jQuery interval</h2>
+<p><input type="button" value="Run"></p>
+<div></div>
+
+<h2>Toggle </h2>
+<button id="toggleButton">Toggle</button>
+<p id="clickableParagraph">Hello</p>
+<p style="display: none">Goodbye</p>
+
+<h2>Fade In/Out Demo</h2>
+<button id="fadeInButton">Fade In</button>
+<button id="fadeOutButton">Fade Out</button>
+
+<script>
+$("button:contains('Toggle Paragraph')").on("click", function() {
+  $("p:contains('This is the paragraph')").slideToggle("slow");
+});
+
+
+$("#animateButton").on("click", function() {
+  var $div = $("#animatedDiv"); 
+  $div.animate({
+    left: '50%', 
+    opacity: '0.5',
+    height: '150px',
+    width: '150px'
+  }, function() {
+    $div.css({
+      left: '0', 
+      opacity: '1',
+      height: '100px',
+      width: '100px'
+    });
+  });
+});
+
+
+jQuery.fx.interval = 100;
+$("input[value='Run']").on("click", function() {
+  var $div = $("div[style*='background:green']");
+  $div.animate({
+    left: '250px', 
+    opacity: '0.5',
+    height: '100px',
+    width: '100px'
+  }, function() {
+    $div.css({
+      left: '0', 
+      opacity: '1',
+      height: '30px',
+      width: '50px'
+    });
+  });
+});
+
+
+$("#toggleButton").on("click", function() {
+  $("p:contains('Hello')").toggle();
+  $("p:contains('Goodbye')").toggle();
+});
+
+
+$("#fadeInButton").on("click", function() {
+  $("p:contains('This is the paragraph')").fadeIn("slow");
+});
+
+$("#fadeOutButton").on("click", function() {
+  $("p:contains('This is the paragraph')").fadeOut("slow");
+});
+
+
+$("#clickableParagraph").on("click", function() {
+  alert("You clicked on the paragraph");
+});
+</script>
+
+</body>
+</html>
